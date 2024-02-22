@@ -1,7 +1,7 @@
 .footer {
   color: #545454;
   margin-bottom: 60px;
-  margin-top: 45px;
+  margin-top: 67px;
 }
 
 .footer__copyright {
@@ -14,8 +14,16 @@
   margin: 0;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
+  
   .footer__copyright {
     margin: 0 0 0 19px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .footer {
+    margin-bottom: 36px;
+    margin-top: 48px;
   }
 }

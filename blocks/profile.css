@@ -11,7 +11,7 @@
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto, 373px) auto;
+  grid-template-columns: 375px auto;
 }
 
 .profile__title {
@@ -22,6 +22,8 @@
   grid-area: title;
   margin: 0;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .profile__description {
@@ -38,7 +40,7 @@
 }
 
 .profile__edit-button {
-  background: url(../images/edit-button.svg) center no-repeat;
+  background: transparent url(../images/edit-button.svg) center no-repeat;
   height: 24px;
   width: 24px;
   border: 1px solid #ffffff;
@@ -48,7 +50,7 @@
 }
 
 .profile__edit-button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: pointer;
 }
 
@@ -57,13 +59,14 @@
   width: 150px;
   height: 50px;
   border: 2px solid #ffffff;
+  border-radius: 2px;
   margin-left: auto;
   box-sizing: border-box;
   transition: opacity 0.6s;
 }
 
 .profile__add-button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: pointer;
 }
 
@@ -92,25 +95,24 @@
   .profile__description {
     width: 100%;
     text-align: center;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
+    max-width: 282px;
   }
 
   .profile__add-button {
     width: 282px;
     margin: 36px auto 0;
   }
+
   .profile__title {
-    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 22px;
     font-weight: 500;
     line-height: 27px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    max-width: 196px;
   }
+
   .profile__edit-button {
     height: 18px;
     width: 18px;
@@ -125,17 +127,16 @@
 @media screen and (max-width: 775px) and (min-width: 630px) {
   .profile__info {
     grid-template-columns: auto;
+    max-width: 385px;
   }
 
   .profile__title {
-    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 22px;
     font-weight: 500;
     line-height: 27px;
   }
 
   .profile__description {
-    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;

@@ -1,7 +1,5 @@
-.cards {
-}
 
-.card__list {
+.cards__list {
   list-style-type: none;
   display: grid;
   justify-content: center;
