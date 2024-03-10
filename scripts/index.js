@@ -26,12 +26,50 @@ const initialCards = [
 ];
 
 const profileEditButton = document.querySelector(".profile__edit-button");
-const profileEditModal = document.querySelector('#profile-modal');
+const profileEditModal = document.querySelector("#profile-modal");
+const profileName = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
+const profileTitleInput = document.querySelector("#profile-title-input");
+const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
+const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileEditCloseButton = document.querySelector(".modal__close");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
+const cardList = document.querySelector(".cards__list");
+
+function closeModal() {
+  profileEditModal.classList.remove("modal__opened");
+}
+
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImageElement = cardElement.querySelector(".card__image");
+  const cardTitleElement = cardElement.querySelector(".card__text");
+  cardTitleElement.textContent = cardData.name;
+  cardImageElement.src = cardData.link;
+  cardImageElement.alt = cardData.name;
+  return cardElement;
+}
+
 profileEditButton.addEventListener("click", () => {
-    profileEditModal.classList.add('modal__opened');
+  profileTitleInput.value = profileName.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+
+  profileEditModal.classList.add("modal__opened");
 });
 
-const profileEditCloseButton = document.querySelector('.modal__close');
-profileEditCloseButton.addEventListener('click', () => {
-    profileEditModal.classList.remove('modal__opened');
-})
+profileEditCloseButton.addEventListener("click", closeModal);
+
+profileEditForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  profileName.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  closeModal();
+});
+
+initialCards.forEach((cardData) => {
+  const cardElement = getCardElement(cardData);
+  cardList.append(cardElement);
+});
