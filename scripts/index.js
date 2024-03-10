@@ -40,7 +40,7 @@ const cardTemplate =
 const cardList = document.querySelector(".cards__list");
 
 function closeModal() {
-  profileEditModal.classList.remove("modal__opened");
+  profileEditModal.classList.remove("modal_opened");
 }
 
 function getCardElement(cardData) {
@@ -57,7 +57,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 
-  profileEditModal.classList.add("modal__opened");
+  profileEditModal.classList.add("modal_opened");
 });
 
 profileEditCloseButton.addEventListener("click", closeModal);
