@@ -42,19 +42,19 @@
           ></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list">
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <footer class="footer page__section">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
     </div>
+    <!-- Edit modal -->
     <div class="modal" id="profile-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
+        <button class="modal__close" id="profile-modal-close-button"></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="profile-edit-form">
           <input
             type="text"
             name="title"
@@ -73,6 +73,38 @@
         </form>
       </div>
     </div>
+    <!--Add card modal-->
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="card-modal-close-button"></button>
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form" id="add-card-form">
+          <input
+            type="text"
+            name="title"
+            class="modal__input"
+            id="card-title-input"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            name="URL"
+            class="modal__input"
+            id="card-image-input"
+            placeholder="Image URL"
+          />
+          <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+    <!--Image preview modal-->
+    <div class="modal" id="image-preview-modal">
+      <div class="modal__image-container">
+        <button class="modal__close" id="image-preview-close"></button>
+        <img src="#" alt="#" class="modal__image" id="image-preview">
+        <p class="modal__image-title"></p>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
@@ -83,6 +115,7 @@
             class="card__like-button"
             aria-label="like button"
           ></button>
+          <button class="card__remove-button"></button>
         </div></li
     ></template>
 

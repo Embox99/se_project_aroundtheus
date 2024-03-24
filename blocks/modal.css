@@ -1,7 +1,7 @@
 .modal {
   position: fixed;
   z-index: 999;
-  display: none;
+  display: flex;
   align-items: center;
   top: 0;
   bottom: 0;
@@ -10,6 +10,9 @@
   color: black;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .modal__container {
@@ -33,6 +36,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  transition: opacity 0.3s linear;
 }
 
 .modal__form {
@@ -80,10 +84,30 @@
   letter-spacing: 0em;
   text-align: center;
   border-radius: 2px;
+  transition: opacity 0.3s linear;
+}
+
+.modal__image-container {
+  position: relative;
+}
+
+.modal__image-title {
+  color: #ffffff;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 @media screen and (max-width: 525px) {
