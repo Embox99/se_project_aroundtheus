@@ -129,8 +129,6 @@ profileEditCloseButton.addEventListener("click", () => {
   closeModal(profileEditModal);
 });
 
-addCardForm.addEventListener("submit", handleAddCardFormSumbit);
-
 addNewCardButton.addEventListener("click", () => {
   openModal(addCardModal);
 });
@@ -142,6 +140,4 @@ imagePreviewCloseButton.addEventListener("click", ()=>{
   closeModal(imagePreviewModal);
 })
 
-initialCards.forEach((cardData) => {
-  renderCard(cardData);
-});
+initialCards.forEach(renderCard);
