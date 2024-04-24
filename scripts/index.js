@@ -50,6 +50,7 @@ const cardModalCloseButton = document.querySelector("#card-modal-close-button");
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardUrlInput = document.querySelector("#card-image-input");
 const imagePreviewCloseButton = document.querySelector("#image-preview-close");
+const everyModal = document.querySelectorAll(".modal");
 
 //functions//
 
@@ -136,8 +137,24 @@ cardModalCloseButton.addEventListener("click", () => {
   closeModal(addCardModal);
 });
 
-imagePreviewCloseButton.addEventListener("click", ()=>{
+imagePreviewCloseButton.addEventListener("click", () => {
   closeModal(imagePreviewModal);
-})
+});
 
 initialCards.forEach(renderCard);
+
+everyModal.forEach((modal) => {
+  modal.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal_opened")) {
+      closeModal(modal);
+    }
+  });
+});
+
+everyModal.forEach((modal) => {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeModal(modal);
+    }
+  });
+});
