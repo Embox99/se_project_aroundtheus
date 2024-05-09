@@ -28,10 +28,8 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDeleteCard();
       });
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this.handleImageClick();
+    this._cardImageEl.addEventListener("click", () => {
+        this._handleImageClick({name: this._name, link: this._link });
       });
   }
 
@@ -47,5 +45,6 @@ export default class Card {
     this._cardImageEl.alt = this._name;
 
     this._setEventListeners();
+    return this._cardElement;
   }
 }
