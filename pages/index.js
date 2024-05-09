@@ -36,16 +36,14 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
+const profileEditForm = document.forms["profile-edit-form"];
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 const imagePreviewImage = document.querySelector("#image-preview");
 const imagePreviewTitle = document.querySelector(".modal__image-title");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 const cardList = document.querySelector(".cards__list");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardForm = document.querySelector("#add-card-form");
+const addCardForm = document.forms["add-card-form"];
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardUrlInput = document.querySelector("#card-image-input");
 const allModals = document.querySelectorAll(".modal");
@@ -78,9 +76,14 @@ function openImagePreviewModal({name, link}) {
   openModal(imagePreviewModal);
 }
 
-function renderCard(cardData) {
+function createCard(cardData){
   const cardElement = new Card(cardData, "#card-template", openImagePreviewModal);
-  cardList.prepend(cardElement.getView());
+  return cardElement.getView();
+}
+
+function renderCard(cardData, method = "prepend") {
+  const cardElement = createCard(cardData);
+  cardList.prepend(cardElement);
 }
 
 function handleAddCardFormSumbit(e) {
@@ -114,10 +117,12 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
+  editFormValidator.resetValidation();
 });
 
 addNewCardButton.addEventListener("click", () => {
   openModal(addCardModal);
+  cardFormValidator.resetValidation();
 });
 
 initialCards.forEach(renderCard);
@@ -135,7 +140,7 @@ allModals.forEach((modal) => {
 
 // Form Validation
 
-const cardFormValidator = new FormValidator(validationSettings, addCardModal);
+const cardFormValidator = new FormValidator(validationSettings, addCardForm);
 const editFormValidator = new FormValidator(
   validationSettings,
   profileEditForm

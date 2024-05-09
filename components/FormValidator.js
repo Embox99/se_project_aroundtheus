@@ -37,6 +37,14 @@ export default class FormValidator {
     }
   }
 
+  resetValidation(){
+    this._toggleButtonState();
+
+    this._inputElements.forEach((inputEl) => {
+        this._hideInputError(inputEl);
+    })
+  }
+
   _toggleButtonState() {
     let foundInvalid = false;
     this._inputElements.forEach((inputEl) => {
@@ -58,9 +66,6 @@ export default class FormValidator {
     this._inputElements = Array.from(
       this._formElement.querySelectorAll(this._inputSelector)
     );
-    this._submitButton = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
     this._inputElements.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
@@ -71,7 +76,7 @@ export default class FormValidator {
 
   enableValidation() {
     this._formElement.addEventListener("submit", (e) => {
-      e.preventDefault;
+      e.preventDefault();
     });
     this._setEventListeners();
   }
