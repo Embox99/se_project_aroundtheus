@@ -118,3 +118,12 @@ addCardPopup.setEventlisteners();
 
 const imagePopup = new PopupWithImage("#image-preview-modal");
 imagePopup.setEventlisteners();
+
+// Get user info on page load
+api.getUserInfo()
+    .then((data) => {
+        userInfo.setUserInfo({ name: data.name, job: data.about });
+    })
+    .catch((err) => {
+        console.log(err);
+    });
