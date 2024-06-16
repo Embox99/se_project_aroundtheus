@@ -1,8 +1,8 @@
 export default class Card {
-  constructor({ name, link, id }, cardSelector, handleImageClick, handleDeleteCard, handleLike) {
-    this._name = name;
-    this._link = link;
-    this._id = id;
+  constructor(data, cardSelector, handleImageClick, handleDeleteCard, handleLike) {
+    this._name = data.name;
+    this._link = data.link;
+    this._id = data._id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteCard = handleDeleteCard;

@@ -137,10 +137,12 @@
 }
 
 .modal__container-delete {
-  width: 430px;
-  height: 181px;
-  background-color: #ffffff;
-  padding: 34px 36px 34px 36px;
+  width: 362px;
+  height: 109px;
+}
+
+.modal__button-delete{
+  margin-top: 38px;
 }
 
 @media screen and (max-width: 525px) {
