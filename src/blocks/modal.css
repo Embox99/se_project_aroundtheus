@@ -91,6 +91,8 @@
   transition: opacity 0.3s linear;
 }
 
+
+
 .modal__image-container {
   position: relative;
 }
@@ -132,6 +134,13 @@
   font-weight: 400;
   line-height: 14.52px;
   text-align: left;
+}
+
+.modal__container-delete {
+  width: 430px;
+  height: 181px;
+  background-color: #ffffff;
+  padding: 34px 36px 34px 36px;
 }
 
 @media screen and (max-width: 525px) {

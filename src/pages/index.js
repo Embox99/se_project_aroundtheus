@@ -7,6 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupDeleteCard from "../components/PopupDeleteCard.js";
 
 // Selecting DOM elements
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -30,7 +31,7 @@ const api = new Api({
 
 // Function to create a new card
 function createCard(cardData) {
-    const card = new Card(cardData, "#card-template", handleCardClick);
+    const card = new Card(cardData, "#card-template", handleCardClick, handleDeleteCard);
     return card.getView();
 }
 
@@ -118,6 +119,22 @@ addCardPopup.setEventlisteners();
 
 const imagePopup = new PopupWithImage("#image-preview-modal");
 imagePopup.setEventlisteners();
+
+const deleteCardPopup = new PopupDeleteCard("#delete-card-modal");
+deleteCardPopup.setEventlisteners();
+
+function handleDeleteCard(card){
+    deleteCardPopup.open();
+    api.deleteCard(card.cardId)
+        .then(() => {
+            card.handleDeleteConfirm();
+            deleteCardPopup.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+}
 
 // Get user info on page load
 api.getUserInfo()
