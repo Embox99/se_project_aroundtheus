@@ -31,7 +31,7 @@ const api = new Api({
 
 // Function to create a new card
 function createCard(cardData) {
-    const card = new Card(cardData, "#card-template", handleCardClick, handleDeleteCard);
+    const card = new Card(cardData, "#card-template", handleCardClick, handleDeleteCard, handleLike);
     return card.getView();
 }
 
@@ -134,6 +134,29 @@ function handleDeleteCard(card){
             console.log(err);
         });
 
+}
+
+function handleLike(){
+  if(this.classList.contains('card__like-button_active')){
+    api.addLike(this.cardId)
+      .then((data) => {
+        this.likes = data.likes;
+        this.updateLikes();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  else{
+    api.deleteLike(this.cardId)
+      .then((data) => {
+        this.likes = data.likes;
+        this.updateLikes();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 // Get user info on page load

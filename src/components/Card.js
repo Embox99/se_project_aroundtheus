@@ -1,10 +1,12 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick, handleDeleteCard) {
+  constructor({ name, link, id }, cardSelector, handleImageClick, handleDeleteCard, handleLike) {
     this._name = name;
     this._link = link;
+    this._id = id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteCard = handleDeleteCard;
+    this._handleLike = handleLike;
   }
 
   _handleLikeIcon() {
@@ -16,7 +18,7 @@ export default class Card {
       this._handleLikeIcon();
     });
     this._trashButton.addEventListener("click", () => {
-      this._handleDeleteCard(this);
+      this._handleDeleteCard(this._id);
     });
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick({ name: this._name, link: this._link });
