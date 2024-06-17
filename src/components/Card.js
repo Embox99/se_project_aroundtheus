@@ -17,7 +17,7 @@ export default class Card {
     this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
     });
-    this._trashButton.addEventListener("click", () => {
+    this._trashButton.addEventListener("click", (e) => {
       this._handleDeleteCard(this._id);
     });
     this._cardImageEl.addEventListener("click", () => {

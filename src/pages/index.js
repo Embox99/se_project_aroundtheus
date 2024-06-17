@@ -125,7 +125,7 @@ deleteCardPopup.setEventlisteners();
 
 function handleDeleteCard(card){
     deleteCardPopup.open();
-    api.deleteCard(card.cardId)
+    api.deleteCard(card)
         .then(() => {
             card.handleDeleteConfirm();
             deleteCardPopup.close();
@@ -136,9 +136,9 @@ function handleDeleteCard(card){
 
 }
 
-function handleLike(){
+function handleLike(card){
   if(this.classList.contains('card__like-button_active')){
-    api.addLike(this.cardId)
+    api.addLike(card)
       .then((data) => {
         this.likes = data.likes;
         this.updateLikes();
@@ -148,7 +148,7 @@ function handleLike(){
       });
   }
   else{
-    api.deleteLike(this.cardId)
+    api.deleteLike(card)
       .then((data) => {
         this.likes = data.likes;
         this.updateLikes();
