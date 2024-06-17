@@ -20,11 +20,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
+          <dev class="profile__avatar-container">
           <img
             class="profile__image"
             src="<%= require('./images/jacques-cousteau.jpg')%>"
             alt="profile picture"
           />
+          <div class="profile__avatar-button" type="button"></div>
+          </dev>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -131,12 +134,27 @@
           <button class="modal__button modal__button-delete">Yes</button>
         </form>
       </div>
+    </dev>  
     <!--Image preview modal-->
     <div class="modal" id="image-preview-modal">
       <div class="modal__image-container">
         <button class="modal__close" id="image-preview-close"></button>
         <img src="#" alt="#" class="modal__image" id="image-preview" />
         <p class="modal__image-title"></p>
+      </div>
+    </div>
+
+    <!--Edit avatar modal-->
+
+    <div class="modal" id="edit-avatar-modal">
+      <div class = "modal__container">
+        <button class= "modal__close" id= "edit-avatar-close-button"></button>
+        <h2 class= "modal__heading">Change profile picture</h2>
+        <form class="modal__form" id="edit-avatar-form" name="edit-avatar-form">
+          <input class="modal__input" type="url" id="edit-avatar-src" placeholder="Image link" required>
+          <span class="modal__error" id="edit-avatar-link-error"></span>
+          <button class="modal__button">Save</button>
+        </form>
       </div>
     </div>
     <template id="card-template">

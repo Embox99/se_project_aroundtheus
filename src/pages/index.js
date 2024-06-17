@@ -31,7 +31,7 @@ const api = new Api({
 
 // Function to create a new card
 function createCard(cardData) {
-    const card = new Card(cardData, "#card-template", handleCardClick, handleDeleteCard, handleLike);
+    const card = new Card(cardData, "#card-template", handleCardClick, handleDeleteCard, handleLikeClick);
     return card.getView();
 }
 
@@ -123,6 +123,12 @@ imagePopup.setEventlisteners();
 const deleteCardPopup = new PopupDeleteCard("#delete-card-modal");
 deleteCardPopup.setEventlisteners();
 
+const editAvatarPopup = new PopupWithForm("#edit-avatar-modal", handleAvatarFormSubmit);
+editAvatarPopup.setEventlisteners();
+
+
+
+
 function handleDeleteCard(card){
     deleteCardPopup.open();
     api.deleteCard(card)
@@ -136,26 +142,24 @@ function handleDeleteCard(card){
 
 }
 
-function handleLike(card){
-  if(this.classList.contains('card__like-button_active')){
-    api.addLike(card)
-      .then((data) => {
-        this.likes = data.likes;
-        this.updateLikes();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  else{
-    api.deleteLike(card)
-      .then((data) => {
-        this.likes = data.likes;
-        this.updateLikes();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+function handleLikeClick(cardId, cardElement) {
+  const likeButton = cardElement.querySelector(".card__like-button");
+  if (likeButton.classList.contains('card__like-button_active')) {
+      api.deleteLike(cardId)
+          .then(() => {
+              likeButton.classList.remove('card__like-button_active');
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+  } else {
+      api.addLike(cardId)
+          .then(() => {
+              likeButton.classList.add('card__like-button_active');
+          })
+          .catch((err) => {
+              console.log(err);
+          });
   }
 }
 
