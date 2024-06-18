@@ -145,6 +145,15 @@
   margin-top: 38px;
 }
 
+.modal__container-avatar {
+  width: 358px;
+  height: 202px;
+}
+
+.modal__heading-avatar {
+  margin-bottom: 54px;
+}
+
 @media screen and (max-width: 525px) {
   .modal__heading {
     font-size: 18px;
