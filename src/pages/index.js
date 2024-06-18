@@ -44,6 +44,7 @@ function handleCardClick(data) {
 // Function to handle add card form submission
 function handleAddCardFormSubmit(data) {
     const cardData = { name: data["title"], link: data["URL"] };
+    addCardPopup.renderLoading(true);
     api.addCard(cardData)
         .then((newCard) => {
             const cardElement = createCard(newCard);
@@ -53,11 +54,15 @@ function handleAddCardFormSubmit(data) {
         })
         .catch((err) => {
             console.log(err);
-        });
+        })
+        .finally(() => {
+            addCardPopup.renderLoading(false);
+        })
 }
 
 // Function to handle profile form submission
 function handleProfileFormSubmit(formData) {
+    profileEditPopup.renderLoading(true);
     api.updateProfileInfo({ name: formData.title, description: formData.description })
         .then((data) => {
             userInfo.setUserInfo({ name: data.name, job: data.about });
@@ -65,12 +70,16 @@ function handleProfileFormSubmit(formData) {
         })
         .catch((err) => {
             console.log(err);
-        });
+        })
+        .finally(() => {
+            profileEditPopup.renderLoading(false);
+        })
 }
 
 // Function to handle avatar form submission
 
 function handleAvatarFormSubmit(data){
+    editAvatarPopup.renderLoading(true);
   api.updateProfilePicture({data: data.avatar})
   .then((res)=>{
     userInfo.setUserAvatar(res.avatar);
@@ -78,7 +87,10 @@ function handleAvatarFormSubmit(data){
   })
   .catch((err)=>{
     console.log(err);
-  });
+  })
+  .finally(() => {
+    editAvatarPopup.renderLoading(false);
+  })
 }
 
 // Event listeners
