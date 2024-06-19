@@ -159,7 +159,7 @@ deleteCardPopup.setEventlisteners();
 const editAvatarPopup = new PopupWithForm("#edit-avatar-modal", handleAvatarFormSubmit);
 editAvatarPopup.setEventlisteners();
 
-/*function handleDeleteCard(card){
+/* function handleDeleteCard(card){
     deleteCardPopup.open();
     api.deleteCard(card)
         .then(() => {
@@ -174,18 +174,21 @@ editAvatarPopup.setEventlisteners();
 
 
 function handleDeleteCard(cardId, cardElement){
+    console.log("Attempting to delete card:", cardId);
     deleteCardPopup.open();
     deleteCardPopup.handleDeleteConfirm(() => {
+         console.log("Delete confirmation received");
         api.deleteCard(cardId)
-        .then(() => {
-            cardElement.removeCardElement();
-            deleteCardPopup.close();
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    })
-} 
+            .then(() => {
+                console.log("Card deleted successfully:", cardId);
+                cardElement.removeCardElement();
+                deleteCardPopup.close();
+                })
+            .catch((err) => {
+                console.log("Error deleting card:", err);
+                });
+            });
+        }
 
 function handleLikeClick(cardId, cardElement) {
   const likeButton = cardElement.querySelector(".card__like-button");

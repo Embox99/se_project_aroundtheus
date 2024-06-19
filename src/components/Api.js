@@ -56,11 +56,15 @@ export default class Api {
     }
 
     deleteCard(cardId) {
+        console.log("Deleting card with ID:", cardId);  // Логируем ID карты
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: "DELETE",
             headers: this._headers,
         })
-        .then(this._handleResponse);
+        .then(this._handleResponse)
+        .catch(err => {
+            console.log("API deleteCard error:", err);  // Логируем ошибки API
+        });
     }
 
     addLike(cardId) {
