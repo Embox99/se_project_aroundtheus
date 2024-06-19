@@ -155,7 +155,7 @@ const imagePopup = new PopupWithImage("#image-preview-modal");
 imagePopup.setEventlisteners();
 
 const deleteCardPopup = new PopupDeleteCard("#delete-card-modal");
-deleteCardPopup.setEventlisteners();
+deleteCardPopup.setEventListeners();
 
 const editAvatarPopup = new PopupWithForm("#edit-avatar-modal", handleAvatarFormSubmit);
 editAvatarPopup.setEventlisteners();
