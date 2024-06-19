@@ -18,7 +18,7 @@ export default class Card {
       this._handleLikeClick(this._id, this._cardElement);
     });
     this._trashButton.addEventListener("click", (e) => {
-      this._handleDeleteCard(this._id);
+      this._handleDeleteCard(this._id, this);
     });
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick({ name: this._name, link: this._link });

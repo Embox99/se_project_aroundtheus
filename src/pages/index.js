@@ -159,7 +159,7 @@ deleteCardPopup.setEventlisteners();
 const editAvatarPopup = new PopupWithForm("#edit-avatar-modal", handleAvatarFormSubmit);
 editAvatarPopup.setEventlisteners();
 
-function handleDeleteCard(card){
+/*function handleDeleteCard(card){
     deleteCardPopup.open();
     api.deleteCard(card)
         .then(() => {
@@ -170,22 +170,22 @@ function handleDeleteCard(card){
             console.log(err);
         });
 
-}
+} */
 
 
-/*function handleDeleteCard(cardId, cardElement){
+function handleDeleteCard(cardId, cardElement){
     deleteCardPopup.open();
     deleteCardPopup.handleDeleteConfirm(() => {
         api.deleteCard(cardId)
         .then(() => {
-            deleteCardPopup.close();
             cardElement.removeCardElement();
+            deleteCardPopup.close();
         })
         .catch((err) => {
             console.log(err);
         })
     })
-} */
+} 
 
 function handleLikeClick(cardId, cardElement) {
   const likeButton = cardElement.querySelector(".card__like-button");
