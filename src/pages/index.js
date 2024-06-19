@@ -110,6 +110,7 @@ addNewCardButton.addEventListener("click", () => {
 
 profileAvatarButton.addEventListener("click", () => {
     editAvatarPopup.open();
+    avatarFormValidator.resetValidation();
 } );
 
 // Form validation instances

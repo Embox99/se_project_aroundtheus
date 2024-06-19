@@ -76,6 +76,11 @@
   margin-top: 30px;
 }
 
+.modal__label-avatar{
+  position: relative;
+  margin-top: 54px;
+}
+
 .modal__button {
   height: 50px;
   margin-top: 48px;
@@ -148,10 +153,6 @@
 .modal__container-avatar {
   width: 358px;
   height: 202px;
-}
-
-.modal__heading-avatar {
-  margin-bottom: 54px;
 }
 
 @media screen and (max-width: 525px) {
