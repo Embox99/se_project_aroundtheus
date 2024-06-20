@@ -37,11 +37,13 @@ export default class Api {
         }).then(this._handleResponse);
     }
 
-    updateProfilePicture(avatar) {
+    updateProfilePicture(url) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
             headers: this._headers,
-            body: JSON.stringify({ avatar })
+            body: JSON.stringify({ 
+                avatar: url,
+             })
         })
         .then(this._handleResponse);
     }
@@ -56,14 +58,13 @@ export default class Api {
     }
 
     deleteCard(cardId) {
-        console.log("Deleting card with ID:", cardId);  // Логируем ID карты
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: "DELETE",
             headers: this._headers,
         })
         .then(this._handleResponse)
         .catch(err => {
-            console.log("API deleteCard error:", err);  // Логируем ошибки API
+            console.log(err)
         });
     }
 

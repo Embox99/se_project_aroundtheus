@@ -20,7 +20,7 @@ const profileAvatarButton = document.querySelector(".profile__avatar-button");
 const profileAvatarForm = document.querySelector("#edit-avatar-form");
 
 // User info instance
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+const userInfo = new UserInfo(".profile__title", ".profile__description", ".profile__image");
 
 // API instance
 const api = new Api({
@@ -81,9 +81,9 @@ function handleProfileFormSubmit(formData) {
 
 function handleAvatarFormSubmit(data){
     editAvatarPopup.renderLoading(true);
-  api.updateProfilePicture({data: data.avatar})
+  api.updateProfilePicture(data.url)
   .then((res)=>{
-    userInfo.setUserAvatar(res.avatar);
+    userInfo.setUserAvatar(res);
     editAvatarPopup.close();
   })
   .catch((err)=>{
@@ -145,6 +145,7 @@ api.renderCards()
     });
 
 // Popup instances
+
 const profileEditPopup = new PopupWithForm("#profile-modal", handleProfileFormSubmit);
 profileEditPopup.setEventlisteners();
 
@@ -160,28 +161,13 @@ deleteCardPopup.setEventListeners();
 const editAvatarPopup = new PopupWithForm("#edit-avatar-modal", handleAvatarFormSubmit);
 editAvatarPopup.setEventlisteners();
 
-/* function handleDeleteCard(card){
-    deleteCardPopup.open();
-    api.deleteCard(card)
-        .then(() => {
-            card.handleDeleteConfirm();
-            deleteCardPopup.close();
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-
-} */
-
+// Delete card function
 
 function handleDeleteCard(cardId, cardElement){
-    console.log("Attempting to delete card:", cardId);
     deleteCardPopup.open();
     deleteCardPopup.handleDeleteConfirm(() => {
-         console.log("Delete confirmation received");
         api.deleteCard(cardId)
             .then(() => {
-                console.log("Card deleted successfully:", cardId);
                 cardElement.removeCardElement();
                 deleteCardPopup.close();
                 })
@@ -190,6 +176,8 @@ function handleDeleteCard(cardId, cardElement){
                 });
             });
         }
+
+// Handle likes function 
 
 function handleLikeClick(cardId, cardElement) {
   const likeButton = cardElement.querySelector(".card__like-button");
@@ -216,6 +204,7 @@ function handleLikeClick(cardId, cardElement) {
 api.getUserInfo()
     .then((data) => {
         userInfo.setUserInfo({ name: data.name, job: data.about });
+        userInfo.setUserAvatar({ avatar: data.avatar})
     })
     .catch((err) => {
         console.log(err);
