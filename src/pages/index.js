@@ -13,11 +13,12 @@ import PopupDeleteCard from "../components/PopupDeleteCard.js";
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
-const profileEditForm = document.querySelector("#profile-edit-form");
 const addNewCardButton = document.querySelector(".profile__add-button");
-const addCardForm = document.querySelector("#add-card-form");
 const profileAvatarButton = document.querySelector(".profile__avatar-button");
-const profileAvatarForm = document.querySelector("#edit-avatar-form");
+const addCardForm = document.forms["card-form"];
+const profileAvatarForm = document.forms["avatar-form"];
+const profileEditForm = document.forms["profile-form"];
+
 
 // User info instance
 const userInfo = new UserInfo(".profile__title", ".profile__description", ".profile__image");
@@ -137,6 +138,7 @@ const cardSection = new Section(
 api.renderCards()
     .then(([cards, userData]) => {
         userInfo.setUserInfo({ name: userData.name, job: userData.about });
+        userInfo.setUserAvatar({ avatar: userData.avatar})
         cardSection.items = cards;
         cardSection.renderItems();
     })
@@ -200,12 +202,3 @@ function handleLikeClick(cardId, cardElement) {
   }
 }
 
-// Get user info on page load
-api.getUserInfo()
-    .then((data) => {
-        userInfo.setUserInfo({ name: data.name, job: data.about });
-        userInfo.setUserAvatar({ avatar: data.avatar})
-    })
-    .catch((err) => {
-        console.log(err);
-    });

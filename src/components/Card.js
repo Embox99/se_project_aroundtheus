@@ -11,11 +11,10 @@ export default class Card {
   }
 
   _renderLikes() {
-    const likeButton = this._cardElement.querySelector(".card__like-button");
     if (this._isLiked) {
-      likeButton.classList.add("card__like-button_active");
+      this._likeButton.classList.add("card__like-button_active");
     } else {
-      likeButton.classList.remove("card__like-button_active");
+      this._likeButton.classList.remove("card__like-button_active");
     }
   }
 
