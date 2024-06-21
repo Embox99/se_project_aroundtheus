@@ -54,9 +54,7 @@ function handleAddCardFormSubmit(data) {
             addCardPopup.close();
             addCardForm.reset();
         })
-        .catch((err) => {
-            console.log(err);
-        })
+        .catch(console.error)
         .finally(() => {
             addCardPopup.renderLoading(false);
         })
@@ -70,9 +68,7 @@ function handleProfileFormSubmit(formData) {
             userInfo.setUserInfo({ name: data.name, job: data.about });
             profileEditPopup.close();
         })
-        .catch((err) => {
-            console.log(err);
-        })
+        .catch(console.error)
         .finally(() => {
             profileEditPopup.renderLoading(false);
         })
@@ -87,9 +83,7 @@ function handleAvatarFormSubmit(data){
     userInfo.setUserAvatar(res);
     editAvatarPopup.close();
   })
-  .catch((err)=>{
-    console.log(err);
-  })
+  .catch(console.error)
   .finally(() =>{
     editAvatarPopup.renderLoading(false);
   })
@@ -135,16 +129,14 @@ const cardSection = new Section(
 );
 
 // Initial cards and user info
-api.renderCards()
+api.getAppData()
     .then(([cards, userData]) => {
         userInfo.setUserInfo({ name: userData.name, job: userData.about });
         userInfo.setUserAvatar({ avatar: userData.avatar})
         cardSection.items = cards;
         cardSection.renderItems();
     })
-    .catch((err) => {
-        console.log(err);
-    });
+    .catch(console.error)
 
 // Popup instances
 
@@ -173,32 +165,24 @@ function handleDeleteCard(cardId, cardElement){
                 cardElement.removeCardElement();
                 deleteCardPopup.close();
                 })
-            .catch((err) => {
-                console.log("Error deleting card:", err);
-                });
+                .catch(console.error)
             });
         }
 
 // Handle likes function 
 
-function handleLikeClick(cardId, cardElement) {
-  const likeButton = cardElement.querySelector(".card__like-button");
-  if (likeButton.classList.contains('card__like-button_active')) {
+function handleLikeClick(cardId, cardInstance) {  
+    if (cardInstance.isLiked()) {
       api.deleteLike(cardId)
-          .then(() => {
-              likeButton.classList.remove('card__like-button_active');
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-  } else {
+        .then((res) => {
+          cardInstance.setIsLiked(res.isLiked);
+        })
+        .catch(console.error);
+    } else {
       api.addLike(cardId)
-          .then(() => {
-              likeButton.classList.add('card__like-button_active');
-          })
-          .catch((err) => {
-              console.log(err);
-          });
+        .then((res) => {
+          cardInstance.setIsLiked(res.isLiked);
+        })
+        .catch(console.error);
+    }
   }
-}
-

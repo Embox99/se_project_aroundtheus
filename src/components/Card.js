@@ -10,7 +10,18 @@ export default class Card {
     this._isLiked = data.isLiked;
   }
 
+  isLiked(){
+    return this._isLiked;
+  }
+
+  setIsLiked(isLiked) {
+    console.log('setIsLiked called with:', isLiked);
+    this._isLiked = isLiked;
+    this._renderLikes();
+  }
+
   _renderLikes() {
+    console.log('Rendering likes. isLiked:', this._isLiked);
     if (this._isLiked) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
@@ -22,7 +33,7 @@ export default class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeClick(this._id, this._cardElement);
+      this._handleLikeClick(this._id, this);
     });
     this._trashButton.addEventListener("click", (e) => {
       this._handleDeleteCard(this._id, this);
