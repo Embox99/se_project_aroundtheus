@@ -116,6 +116,20 @@ avatarFormValidator.enableValidation();
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
+/*
+const formValidators = {};
+
+const enableValidation = (validationSettings) => {
+    const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
+    formList.forEach((formElement) => {
+        const validator = new FormValidator(validationSettings, formElement)
+        const formName = formElement.getAttribute("name");
+        formValidators[formName] = validator;
+        validator.enableValidation;
+    })
+}
+enableValidation(validationSettings); */
+
 // Section instance for cards
 const cardSection = new Section(
     {

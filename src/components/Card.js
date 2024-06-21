@@ -15,13 +15,11 @@ export default class Card {
   }
 
   setIsLiked(isLiked) {
-    console.log('setIsLiked called with:', isLiked);
     this._isLiked = isLiked;
     this._renderLikes();
   }
 
   _renderLikes() {
-    console.log('Rendering likes. isLiked:', this._isLiked);
     if (this._isLiked) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
