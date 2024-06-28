@@ -76,6 +76,11 @@
   margin-top: 30px;
 }
 
+.modal__label-avatar{
+  position: relative;
+  margin-top: 54px;
+}
+
 .modal__button {
   height: 50px;
   margin-top: 48px;
@@ -90,6 +95,8 @@
   border-radius: 2px;
   transition: opacity 0.3s linear;
 }
+
+
 
 .modal__image-container {
   position: relative;
@@ -132,6 +139,20 @@
   font-weight: 400;
   line-height: 14.52px;
   text-align: left;
+}
+
+.modal__container-delete {
+  width: 362px;
+  height: 109px;
+}
+
+.modal__button-delete{
+  margin-top: 38px;
+}
+
+.modal__container-avatar {
+  width: 358px;
+  height: 202px;
 }
 
 @media screen and (max-width: 525px) {
